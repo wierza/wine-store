@@ -9,3 +9,42 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+//Products model
+model Product {
+  id          String      @id @default(uuid())
+  title       String
+  photo       String
+  price       Int
+  description String
+  orderItems  OrderItem[]
+}
+
+//Orders model
+model Order {
+  id          String      @id @default(uuid())
+  user        User        @relation(fields: [userId], references: [id])
+  userId      String
+  date        DateTime
+  priceSum    Decimal
+  comment     String?
+  clientName  String?
+  email       String?
+  address     String?
+  createdAt   DateTime    @default(now())
+  orderItems  OrderItem[]
+}
+
+//OrderItems model
+model OrderItem {
+  id          String   @id @default(uuid())
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId     String
+  product     Product  @relation(fields: [productId], references: [id])
+  productId   String
+  amount      Int
+  color       String
+  size        String
+  comment     String?
+  createdAt   DateTime @default(now())
+}
