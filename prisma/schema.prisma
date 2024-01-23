@@ -13,10 +13,16 @@ datasource db {
 //Products model
 model Product {
   id          String      @id @default(uuid())
-  name        String
+  title       String
+  origin      String
+  color       String
+  vintage     Int
+  varietal    String
+  alcohol     Decimal
+  content     Int
   photo       String
-  price       Int
-  description String
+  price       Decimal
+  description String? @db.Text
 
 //Relations
   orderItems  OrderItem[]
@@ -25,13 +31,13 @@ model Product {
 
 //Orders model
 model Order {
-  id          String      @id @default(uuid())
-  date        DateTime
-  totalPrice  Int
-  comment     String?
-  clientName  String?
-  email       String?
-  address     String?
+  id            String      @id @default(uuid())
+  date          DateTime
+  totalPrice    Decimal
+  comment       String?
+  customerName  String?
+  email         String?
+  address       String?
 
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
@@ -46,7 +52,7 @@ model Order {
 model OrderItem {
   id          String   @id @default(uuid())
   quantity    Int
-  price       Int
+  price       Decimal
   comment     String?
 
 //Relations
@@ -59,7 +65,6 @@ model OrderItem {
 //Cart model
 model Cart {
   id          String      @id @default(uuid())
-  totalPrice  Int
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 
@@ -73,7 +78,6 @@ model Cart {
 model CartItem {
   id        String   @id @default(uuid())
   quantity  Int
-  price     Int
   comment   String?
 
 //Relations  
