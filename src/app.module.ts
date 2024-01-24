@@ -1,21 +1,34 @@
-import {
-  Module,
-  NestModule,
-  MiddlewareConsumer,
-  RequestMethod,
-} from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import * as cors from 'cors';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { ProductsModule } from './products/products.module';
-import { OrdersModule } from './orders/orders.module';
 import { UsersModule } from './users/users.module';
-import { CartModule } from './cart/cart.module';
-import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { ConfigModule } from '@nestjs/config';
+import { CartModule } from './cart/cart.module';
+import { OrdersModule } from './orders/orders.module';
+import configuration from './config/configuration';
 
 @Module({
-  imports: [ProductsModule, OrdersModule, UsersModule, CartModule, PrismaModule, AuthModule],
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '..', 'client', 'build'),
+    }),
+    ProductsModule,
+    UsersModule,
+    AuthModule,
+    PrismaModule,
+    ConfigModule.forRoot({
+      load: [configuration],
+      isGlobal: true,
+    }),
+    CartModule,
+    OrdersModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

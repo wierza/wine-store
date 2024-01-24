@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Product } from '@prisma/client';
+import { CreateProductDTO } from './dtos/create-product.dto';
 
 @Injectable()
 export class ProductsService {
@@ -16,9 +17,14 @@ export class ProductsService {
       });
     }
 
-    public create(productData: Omit<Product, 'id'>): Promise<Product> {
-      return this.prismaService.product.create({
-        data: productData,
-      });
-    }
+    public create(productData: CreateProductDTO): Promise<Product> {
+        const transformedProduct = {
+          ...productData,
+          price: productData.price.toString(),
+          alcohol: productData.alcohol.toString(),
+        };
+        return this.prismaService.product.create({
+          data: transformedProduct,
+        });
+      }
 }

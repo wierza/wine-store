@@ -1,20 +1,21 @@
 import { Controller, Get, UseGuards, Request, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { CartService } from './cart.service';
 import { CreateCartItemDTO } from './dtos/create-cart-item.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('cart')
 export class CartController {
     constructor(private cartService: CartService) {}
 
     @Get('/')
-    //@UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     getCartByUser(@Request() req) {
     const userId = req.user.id;
         return this.cartService.getCartByUser(userId);
     }
 
     @Post('/')
-    //@UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     async createCartItem(
       @Request() req,
       @Body() createCartItemDTO: CreateCartItemDTO,
@@ -24,7 +25,7 @@ export class CartController {
     }
 
     @Put('/:cartItemId')
-    //@UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     async updateCartItem(
       @Param('cartItemId') cartItemId: string,
       @Body() updateData: CreateCartItemDTO,
@@ -33,7 +34,7 @@ export class CartController {
     }
 
     @Delete('/:cartItemId')
-    //@UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     async deleteCartItem(@Param('cartItemId') cartItemId: string) {
       return this.cartService.deleteCartItem(cartItemId);
     }

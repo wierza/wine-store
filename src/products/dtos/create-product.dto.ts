@@ -1,6 +1,10 @@
+import { Decimal } from '@prisma/client/runtime';
 import { IsNotEmpty, IsString, Length, IsDecimal, IsUUID, IsInt } from 'class-validator';
   
   export class CreateProductDTO {
+
+    @IsUUID()
+    id: string;
   
     @IsNotEmpty()
     @IsString()
@@ -25,8 +29,9 @@ import { IsNotEmpty, IsString, Length, IsDecimal, IsUUID, IsInt } from 'class-va
     varietal: string;
 
     @IsNotEmpty()
+    @IsString()
     @IsDecimal()
-    alcohol: number;
+    alcohol: string;
 
     @IsNotEmpty()
     @IsInt()
@@ -37,9 +42,10 @@ import { IsNotEmpty, IsString, Length, IsDecimal, IsUUID, IsInt } from 'class-va
     photo: string;
   
     @IsNotEmpty()
+    @IsString()
     @Length(1, 10)
     @IsDecimal()
-    price: number;
+    price: string;
   
     @IsNotEmpty()
     @IsString()
