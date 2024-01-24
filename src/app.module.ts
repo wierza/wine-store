@@ -12,9 +12,10 @@ import { OrdersModule } from './orders/orders.module';
 import { UsersModule } from './users/users.module';
 import { CartModule } from './cart/cart.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ProductsModule, OrdersModule, UsersModule, CartModule, PrismaModule],
+  imports: [ProductsModule, OrdersModule, UsersModule, CartModule, PrismaModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
