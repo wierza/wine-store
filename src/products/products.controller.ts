@@ -1,5 +1,7 @@
-import { Controller, Get, Param, ParseUUIDPipe, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Param, ParseUUIDPipe, NotFoundException, Post, UseGuards, Body } from '@nestjs/common';
 import { ProductsService } from './products.service';
+import { CreateProductDTO } from './dtos/create-product.dto';
+
 
 @Controller('products')
 export class ProductsController {
@@ -16,4 +18,12 @@ export class ProductsController {
       if (!product) throw new NotFoundException('Product not found');
     return product;
   }
+
+  @Post('/')
+  //@UseGuards(JwtAuthGuard)
+  create(@Body() productData: CreateProductDTO) {
+    return this.productsService.create(productData);
+  }
 }
+
+
