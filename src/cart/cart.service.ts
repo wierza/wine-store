@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateCartItemDto } from './dtos/create-cart-item.dto';
+import { CreateCartItemDTO } from './dtos/create-cart-item.dto';
 
 @Injectable()
 export class CartService {
@@ -13,7 +13,7 @@ export class CartService {
         });
       }
     
-      public async createCartItem(userId: string, createCartItemDto: CreateCartItemDto) {
+      public async createCartItem(userId: string, createCartItemDTO: CreateCartItemDTO) {
         const userCart = await this.prismaService.cart.findUnique({
           where: { userId }
         });
@@ -25,9 +25,9 @@ export class CartService {
         return this.prismaService.cartItem.create({
           data: {
             cartId: userCart.id,
-            productId: createCartItemDto.productId,
-            quantity: createCartItemDto.quantity,
-            comment: createCartItemDto.comment
+            productId: createCartItemDTO.productId,
+            quantity: createCartItemDTO.quantity,
+            comment: createCartItemDTO.comment
           }
         });
       }
@@ -38,7 +38,7 @@ export class CartService {
         });
       }
     
-      public async updateCartItem(cartItemId: string, updateData: CreateCartItemDto) {
+      public async updateCartItem(cartItemId: string, updateData: CreateCartItemDTO) {
         return this.prismaService.cartItem.update({
           where: {
             id: cartItemId
@@ -46,4 +46,12 @@ export class CartService {
           data: updateData
         });
       }
+
+      public async clearCart(userId: string) {
+        await this.prismaService.cartItem.deleteMany({
+          where: { cart: { userId } },
+        });
+    }
+
+
 }

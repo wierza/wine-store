@@ -1,9 +1,6 @@
-import { Controller, Get, Req, Param } from '@nestjs/common';
+import { Controller, Get, UseGuards, Req, Param, Post } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 
-interface AuthenticatedRequest extends Request {
-    user: any;
-  }
 
 @Controller('orders')
 export class OrdersController {
@@ -11,7 +8,7 @@ export class OrdersController {
 
     @Get('/')
     //@UseGuards(JwtAuthGuard)
-    getAllByUserId(@Req() req: AuthenticatedRequest) {
+    getAllByUserId(@Req() req) {
     const userId = req.user.id;
     return this.ordersService.getAllByUserId(userId);
     }
@@ -20,5 +17,12 @@ export class OrdersController {
     //@UseGuards(JwtAuthGuard)
     getById(@Param('id') id: string) {
       return this.ordersService.getById(id);
+    }
+
+    @Post('/')
+    //@UseGuards(JwtAuthGuard)
+    async createOrder(@Req() req) {
+      const userId = req.user.id;
+      return this.ordersService.createOrderFromCart(userId);
     }
 }
