@@ -1,8 +1,14 @@
+import { Routes, Route } from 'react-router-dom';
+import MainLayout from "./components/layout/MainLayout/MainLayout";
+import Home from './components/pages/Home/Home';
+
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <MainLayout>
+      <Routes>
+      <Route path="/" element={<Home />} />
+      </Routes>
+    </MainLayout>
   );
 }
 
