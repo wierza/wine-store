@@ -18,7 +18,7 @@ async function bootstrap() {
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.setGlobalPrefix('api');
-  app.use('/uploads', express.static('uploads'));
+  app.use('/public', express.static('public'));
 
   await app.enableShutdownHooks();
   await app.listen(configService.get('port'));
