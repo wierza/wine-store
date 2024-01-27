@@ -1,4 +1,4 @@
-import ProductsPage from "../features/ProductsPage/ProductsPage"
+import ProductsPage from "../../features/ProductsPage/ProductsPage"
 
 const Home = () => {
     return (
