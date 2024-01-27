@@ -5,7 +5,7 @@ import '../../../styles/settings.scss';
 
 const Footer = () => {
     return (
-        <footer className='text-center'style={{background: '$color-primary'}}>
+        <footer className='text-center'style={{background: '#0d6efd'}}>
             <Container className='p-4' >
                 <section className='mb-5 d-flex justify-content-center'>
                     <div className='mx-3'>
