@@ -1,14 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
-import MainLayout from "./components/layout/MainLayout/MainLayout";
-import Home from './components/pages/Home/Home';
+import Home from './components/pages/Home';
+import MainLayout from './components/layout/MainLayout/MainLayout';
 
 function App() {
   return (
     <MainLayout>
       <Routes>
-      <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
       </Routes>
     </MainLayout>
+    
   );
 }
 
