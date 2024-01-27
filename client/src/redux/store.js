@@ -3,9 +3,11 @@ import { thunk } from 'redux-thunk';
 
 import productsReducer from './productsRedux';
 import initialState from './initialState';
+import usersReducer from './usersRedux';
 
 const subreducers = {
   products: productsReducer,
+  user: usersReducer,
   
 };
 
