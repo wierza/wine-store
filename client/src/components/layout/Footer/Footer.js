@@ -10,32 +10,32 @@ const Footer = () => {
                 <section className='mb-5 d-flex justify-content-center'>
                     <div className='mx-3'>
                         <a href='/'>
-                            <FontAwesomeIcon icon={faFacebookF} style={{color: '$color-white'}} size="lg"/>
+                            <FontAwesomeIcon icon={faFacebookF} style={{color: '#ffffff'}} size="lg"/>
                         </a>
                     </div>
                     <div className='mx-3'>
                         <a href='/'>
-                            <FontAwesomeIcon icon={faTwitter}  style={{color: '$color-white'}} size="lg"/>
+                            <FontAwesomeIcon icon={faTwitter}  style={{color: '#ffffff'}} size="lg"/>
                         </a>
                     </div>
                     <div className='mx-3'>
                         <a href='/'>
-                            <FontAwesomeIcon icon={faGooglePlusG}  style={{color: '$color-white'}} size="lg"/>
+                            <FontAwesomeIcon icon={faGooglePlusG}  style={{color: '#ffffff'}} size="lg"/>
                         </a>
                     </div>
                     <div className='mx-3'>
                         <a href='/'>
-                        <FontAwesomeIcon icon={faInstagram} style={{color: '$color-white'}} size="lg"/>
+                        <FontAwesomeIcon icon={faInstagram} style={{color: '#ffffff'}} size="lg"/>
                         </a>
                     </div>
                     <div className='mx-3'>
                         <a href='/'>
-                        <FontAwesomeIcon icon={faLinkedinIn} style={{color: '$color-white'}} size="lg"/>
+                        <FontAwesomeIcon icon={faLinkedinIn} style={{color: '#ffffff'}} size="lg"/>
                         </a>
                     </div>
                     <div className='mx-3'>
                         <a href='/'>
-                        <FontAwesomeIcon icon={faGithub} style={{color: '$color-white'}} size="lg"/>
+                        <FontAwesomeIcon icon={faGithub} style={{color: '#ffffff'}} size="lg"/>
                         </a>
                     </div>
                 </section>

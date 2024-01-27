@@ -1,8 +1,11 @@
+import ProductsPage from "../features/ProductsPage/ProductsPage"
+
 const Home = () => {
     return (
-      <div>
-        <h1>Hello world!</h1>
-      </div>
+        <div>
+            <ProductsPage />
+        </div>
+      
     );
   }
   
