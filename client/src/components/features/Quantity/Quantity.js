@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Button, FormControl, Row, Col, Card } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import styles from './Quantity.module.scss'
 
 const Quantity = ({ onQuantityChange }) => {
     const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
-        onQuantityChange(quantity);
+        if (typeof onQuantityChange === 'function') {
+          onQuantityChange(quantity);
+        }
       }, [quantity, onQuantityChange]);
 
     const decQuantity = e => {
@@ -25,13 +27,14 @@ const Quantity = ({ onQuantityChange }) => {
 
     return (
         <Row>
-            <Col xs={12}>
+            <Col xs={12} classname={styles.root}>
                 <Button
-                    onClick={decQuantity}
-                    disabled={quantity <= 1}
+                    onClick={incQuantity}
+                    disabled={quantity >= 50}
                     className={styles.btn}
+                    
                 >
-                -
+                +
                  </Button>
                 <FormControl
                     type="number"
@@ -40,11 +43,11 @@ const Quantity = ({ onQuantityChange }) => {
                     className={styles.form}
                 />
                 <Button
-                    onClick={incQuantity}
-                    disabled={quantity >= 50}
+                    onClick={decQuantity}
+                    disabled={quantity <= 1}
                     className={styles.btn}
                 >
-                +
+                -
                 </Button>
             </Col>
         </Row>

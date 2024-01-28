@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { fetchProducts } from './redux/productsRedux';
 import Home from './components/pages/Home/Home';
 import MainLayout from './components/layout/MainLayout/MainLayout';
+import ProductDetails from './components/pages/ProductDetails/ProductDetails';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
     <MainLayout>
       <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
       </Routes>
     </MainLayout>
     
