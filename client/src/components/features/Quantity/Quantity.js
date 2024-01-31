@@ -26,31 +26,29 @@ const Quantity = ({ onQuantityChange }) => {
     }
 
     return (
-        <Row>
-            <Col xs={12} classname={styles.root}>
-                <Button
-                    onClick={incQuantity}
-                    disabled={quantity >= 50}
-                    className={styles.btn}
+        <div className={styles.root}>
+          <Button
+            onClick={decQuantity}
+            disabled={quantity <= 1}
+            className={styles.btn}
+          >
+          -
+          </Button>
+          <FormControl
+            type="number"
+            value={quantity}
+            readOnly
+            className={styles.form}
+          />
+          <Button
+            onClick={incQuantity}
+            disabled={quantity >= 50}
+            className={styles.btn}
                     
-                >
-                +
-                 </Button>
-                <FormControl
-                    type="number"
-                    value={quantity}
-                    readOnly
-                    className={styles.form}
-                />
-                <Button
-                    onClick={decQuantity}
-                    disabled={quantity <= 1}
-                    className={styles.btn}
-                >
-                -
-                </Button>
-            </Col>
-        </Row>
+          >
+          +
+          </Button>
+        </div>
     )
     
 }

@@ -55,11 +55,11 @@ const ProductDetails = () => {
                   <p>Content: {product.content}ml</p> 
                   <p>Price: ${product.price}</p>
                   <p>Description: </p>
-                  <p className={'text-justify'}>{product.description}</p>
+                  <p>{product.description}</p>
                   <Quantity />
-                      <div>
-                        <Button type="submit">Add to cart</Button>
-                      </div>
+                  <div>
+                    <Button type="submit" className='mt-3'>Add to cart</Button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,7 +1,5 @@
 // selectors
-export const getUser = ({ user }) => {
-	return user
-}
+export const getUser = ({ user }) => (user ? user.data : null);
 
 // actions
 const createActionName = actionName => `app/users/${actionName}`
@@ -10,7 +8,7 @@ const LOG_OUT = createActionName('LOG_OUT')
 
 // action creators
 
-export const loginUser = payload => ({
+export const logIn = payload => ({
 	type: LOG_IN,
 	payload,
 })
