@@ -14,7 +14,7 @@ export class CartController {
         return this.cartService.getCartByUser(userId);
     }
 
-    @Post('/')
+    @Post('/add')
     @UseGuards(JwtAuthGuard)
     async createCartItem(
       @Request() req,

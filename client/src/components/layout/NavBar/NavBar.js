@@ -18,7 +18,7 @@ const NavBar = () => {
           <Nav className="ms-auto">
             {!user && (<Nav.Link href='/login'><FontAwesomeIcon className={styles.user}icon={faUser} /><span>Login</span></Nav.Link>)}
             {!user && (<Nav.Link href='/register'>Register</Nav.Link>)}
-            {user && (<div className={'mt-2 text-white'}><FontAwesomeIcon className={styles.user}icon={faUser} />{user.email}</div>)}
+            {user && (<div className={'mt-2 text-white'}><FontAwesomeIcon className={styles.user}icon={faUser} />You are logged in</div>)}
             {user && (<Nav.Link href='/orders'>Orders</Nav.Link>)}
             {user && (<Nav.Link href='/logout'>Log out</Nav.Link>)}
             <Nav.Link href={user ? '/cart' : '/login'}><FontAwesomeIcon icon={faShoppingBasket} /></Nav.Link>

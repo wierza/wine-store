@@ -27,7 +27,6 @@ export class CartService {
             cartId: userCart.id,
             productId: createCartItemDTO.productId,
             quantity: createCartItemDTO.quantity,
-            comment: createCartItemDTO.comment
           }
         });
       }
