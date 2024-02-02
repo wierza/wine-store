@@ -18,8 +18,16 @@ const ProductDetails = () => {
     const productId = product.id;
     const photos = product.photo.split(' ');
     const images = [];
-    //const formatPrice = (product.price) => parseFloat(product.price).toFixed(2);
-    //const formatAlcohol = (alcohol) => parseFloat(alcohol).toFixed(2);
+
+    const formatPrice = (price) => {
+      const formattedPrice = parseFloat(price).toFixed(2);
+      return `$${formattedPrice}`;
+    };
+  
+    const formatAlcohol = (alcohol) => {
+      const formattedAlcohol = parseFloat(alcohol).toFixed(2);
+      return `${formattedAlcohol}%`;
+    };
 
     photos.forEach(photo => {
         images.push({
@@ -51,9 +59,9 @@ const ProductDetails = () => {
                   <p>Color: {product.color}</p>
                   <p>Vintage: {product.vintage}</p>
                   <p>Varietal: {product.origin}</p> 
-                  <p>Voltage: {product.alcohol}%</p> 
+                  <p>Voltage: {formatAlcohol(product.alcohol)}</p> 
                   <p>Content: {product.content}ml</p> 
-                  <p>Price: ${product.price}</p>
+                  <p>Price: {formatPrice(product.price)}</p>
                   <p>Description: </p>
                   <p>{product.description}</p>
                   <Quantity />

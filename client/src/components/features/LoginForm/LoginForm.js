@@ -1,53 +1,67 @@
-//import styles from './Login.module.scss'
-import { Alert, Spinner, Button, Form, Container } from 'react-bootstrap';
 import { useState } from 'react';
-import { API_URL } from '../../../config';
+import { useNavigate } from 'react-router-dom';
+import { Form, Container, Button, Alert, Spinner, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { logIn } from '../../../redux/usersRedux';
-import { useNavigate } from "react-router-dom";
-import { getUser } from '../../../redux/usersRedux';
+
+import { API_URL } from '../../../config';
+import { logIn, getUser } from '../../../redux/usersRedux';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const user = useSelector(getUser);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState(null); //null, 'loading', 'success', 'serverError', 'clientError'
+  const [status, setStatus] = useState(null);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email, password }),
     };
 
     setStatus('loading');
     fetch(`${API_URL}/auth/login`, options)
-      
-      .then(res => {
-        if(res.status === 201) {
-          setStatus('success');
-          return res.json();
-        } else if (res.status === 400) {
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setStatus('success');
+        dispatch(logIn(data));
+        setTimeout(() => {
+          navigate('/');
+        }, 3000);
+      })
+      .catch((error) => {
+        if (error.message === 'Bad Request') {
           setStatus('clientError');
         } else {
           setStatus('serverError');
         }
-      })
-      .then(data => {
-        dispatch(logIn({ data }));
-        setTimeout(() => { navigate('/') }, 500);
-      })
-      .catch(err => {
-        setStatus('serverError');
-      })
+      });
   };
+
+  if (user) {
+    return (
+    <Container className='col-12 col-sm-3 mx-auto min-vh-100'>
+      <Alert variant="success">
+        <Alert.Heading>You're already logged in</Alert.Heading>
+        <p>Enjoy your shopping!</p>
+      </Alert>
+    </Container>
+    );
+  }
+
   return (
     <Container className='col-12 col-sm-3 mx-auto min-vh-100'>
       <h1 className='m-3 d-flex justify-content-center text-primary'>Login</h1>
